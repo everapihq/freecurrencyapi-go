@@ -14,6 +14,7 @@ var client = httpClient()
 
 const BaseUrl = "https://api.freecurrencyapi.com/v1/"
 
+// Deprecated: Use v2Client instead
 func Init(key string) {
 	apikey = key
 }
@@ -53,18 +54,22 @@ func apiCall(endpoint string, params ...map[string]string) []byte {
 	return body
 }
 
+// Deprecated: Use v2Client instead
 func Status() []byte {
 	return apiCall("status")
 }
 
+// Deprecated: Use v2Client instead
 func Currencies(params map[string]string) []byte {
 	return apiCall("currencies", params)
 }
 
+// Deprecated: Use v2Client instead
 func Latest(params map[string]string) []byte {
 	return apiCall("latest", params)
 }
 
+// Deprecated: Use v2Client instead
 func Historical(params map[string]string) []byte {
 	return apiCall("historical", params)
 }

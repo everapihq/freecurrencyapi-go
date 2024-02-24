@@ -11,7 +11,7 @@ This package is a Golang wrapper for [freecurrencyapi.com](https://freecurrencya
 Initialize the API with your API Key (get one for free at [freecurrencyapi.com](https://freecurrencyapi.com)):
 
 ```go
-freecurrencyapi.Init("YOUR-API-KEY")
+client := freecurrencyapi.NewClient("YOUR-API-KEY")
 ```
 
 Afterwards you can make calls to the API like this:
@@ -19,34 +19,35 @@ Afterwards you can make calls to the API like this:
 ### Status Endpoint
 
 ```go
-freecurrencyapi.Status()
+client.Status(context.TODO())
 ```
 
 ### Currencies Endpoint
 
 ```go
-freecurrencyapi.Currencies()
+response, err := client.Currencies(context.TODO(), freeCurrencyApi.CurrenciesRequest{
+	Currencies: []string{"EUR", "GBP"},
+})
 ```
 
 ### Latest Endpoint
 
 ```go
-freecurrencyapi.Latest({
-    "base_currency": "USD",
-    "currencies": "EUR"
+response, err := client.Latest(context.TODO(), freeCurrencyApi.LatestRequest{
+    BaseCurrency: "USD",
+    Currencies: []string{"EUR", "GBP"},
 })
 ```
 
 ### Historical Endpoint
 
 ```go
-freecurrencyapi.Historical({
-    "base_currency": "USD",
-    "currencies": "EUR",
-	"date": "2022-09-04"
+response, err := client.Historical(context.TODO(), freeCurrencyApi.HistoricalRequest{
+    BaseCurrency: "USD",
+    Currencies: []string{"EUR", "GBP"},
+    Date: "2021-01-01",
 })
 ```
-
 
 Find out more about our endpoints, parameters and response data structure in the [docs](https://freecurrencyapi.com/docs)
 
